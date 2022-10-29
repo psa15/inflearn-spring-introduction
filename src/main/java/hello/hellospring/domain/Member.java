@@ -1,8 +1,8 @@
 package hello.hellospring.domain;
 
 public class Member {
+    public String name;
     private Long id;
-    private String name;
 
     public Long getId() {
 
@@ -16,4 +16,9 @@ public class Member {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
 }

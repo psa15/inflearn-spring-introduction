@@ -16,7 +16,7 @@ public class HelloController {
     }
 
     @GetMapping("hello-mvc")
-    public String helloMvc(@RequestParam("name") String name, Model model){
+    public String helloMvc(@RequestParam("name") String name, Model model) {
 
         model.addAttribute("name", name);
         return "hello-template";
@@ -39,10 +39,13 @@ public class HelloController {
 
     static class Hello {
         private String name;
+
         public String getName() {
             return name;
         }
+
         public void setName(String name) {
             this.name = name;
         }
+    }
 }
