@@ -8,6 +8,8 @@ package hello.hellospring.repository;
         import java.util.List;
         import java.util.Optional;
 
+        import static org.assertj.core.api.Assertions.*;
+
 //회원 도메인과 회원 리포지토리가 잘 작성되었는지 확인하기 위한 테스트 케이스
 //테스트는 각각 독립적으로 실행
 public class MemoryMemberRepositoryTest {
@@ -20,6 +22,7 @@ public class MemoryMemberRepositoryTest {
     //MemoryMemberRepository에 clearStore라는 메소드 추가함
     @AfterEach
     public void afterEach() {
+
         repository.clearStore();
     }
 
@@ -32,7 +35,10 @@ public class MemoryMemberRepositoryTest {
         repository.save(member);
         //then
         Member result = repository.findById(member.getId()).get();
-        Assertions.assertThat(result).isEqualTo(member);
+        //findById(member.getId())의 타입이 Optional이기 때문에 get으로 값을 가져올 수 있음
+        assertThat(result).isEqualTo(member);
+        //Assertions.assertThat(result).isEqualTo(member);
+        //에서 Assertions에 커서 두고 alt + enter 치면 옵션들이 나와서 Assertions를 생략할 수 있음
     }
 
     @Test
@@ -53,7 +59,8 @@ public class MemoryMemberRepositoryTest {
 
         //Optional<Member> result = Optional.of(repository.findByName("spring1").get());
         Member result = repository.findByName("spring1").get();
-        Assertions.assertThat(result).isEqualTo(member1);
+        assertThat(result).isEqualTo(member1);
+
     }
 
     @Test
@@ -69,7 +76,7 @@ public class MemoryMemberRepositoryTest {
         //when
         List<Member> result = repository.findAll();
         //then
-        Assertions.assertThat(result.size()).isEqualTo(2);
+        assertThat(result.size()).isEqualTo(2);
         //result에 저장된 결과가 2쌍이 맞는지 확인
     }
 }

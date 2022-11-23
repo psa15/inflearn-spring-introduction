@@ -16,6 +16,7 @@ public class MemoryMemberRepository implements MemberRepository{
     private static long sequence = 0L;
     @Override
     public Optional<Member> findById(Long id) {
+
         return Optional.ofNullable(store.get(id));
     }
 
@@ -30,11 +31,15 @@ public class MemoryMemberRepository implements MemberRepository{
 
     @Override
     public List<Member> findAll() {
+
         return new ArrayList<>(store.values());
     }
 
-    //테스트할 때 한 메소드가 끝나면 깨끗하게 비우기 위해
+    //테스트할 때 한 메소드가 끝나면 임의로 저장된 값을 깨끗하게 비우기 위한 메소드
     public void clearStore() {
+        
+        //.clear 하면 저장된 데이터가 클리어됨
         store.clear();
     }
 }
+//위의 코드들이 잘 돌아가는지 확인하기 위해 테스트 케이스를 작성
