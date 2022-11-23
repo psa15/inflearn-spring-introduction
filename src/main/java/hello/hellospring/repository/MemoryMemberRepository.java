@@ -5,8 +5,12 @@ import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
-
+@Repository
 public class MemoryMemberRepository implements MemberRepository{
+
+
+    private static Map<Long, Member> store = new HashMap<>();
+    private static long sequence = 0L;
 
     @Override
     public Member save(Member member) {
@@ -14,8 +18,6 @@ public class MemoryMemberRepository implements MemberRepository{
         store.put(member.getId(), member);
         return member;
     }
-    private static Map<Long, Member> store = new HashMap<>();
-    private static long sequence = 0L;
     @Override
     public Optional<Member> findById(Long id) {
 
