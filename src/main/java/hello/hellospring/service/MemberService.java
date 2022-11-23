@@ -9,11 +9,19 @@ import java.util.Optional;
 
 public class MemberService {
 
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
 
     /*
-    회원가입
+    private final MemberRepository memberRepository = new MemoryMemberRepository();
+    로 하면 테스트 작성 시 또 새로운 메모리가 생성되는 것,,,,?
      */
+    private final MemberRepository memberRepository;
+    public MemberService(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
+
+    /*
+        회원가입
+         */
     public long join(Member member) {
         //같은 이름이 있는 중복 회원은 X
         /*
